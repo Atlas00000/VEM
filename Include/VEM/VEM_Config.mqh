@@ -86,6 +86,8 @@ input double           inp_bb_max_width_ratio     = 0.00165; // block if ratio >
 // Default OFF; stack on D6 via vem5m_d7_session_bb_rsi.set.
 input group "RSI depth filter"
 input bool             inp_rsi_depth_filter_enable = false;
+input bool             inp_rsi_depth_long_enable  = true;   // if false, no long depth gate
+input bool             inp_rsi_depth_short_enable = true;   // if false, no short depth gate
 input double           inp_rsi_long_max_depth      = 25.0;   // long: signal RSI must be <= this
 input double           inp_rsi_short_min_depth     = 75.0;   // short: signal RSI must be >= this
 

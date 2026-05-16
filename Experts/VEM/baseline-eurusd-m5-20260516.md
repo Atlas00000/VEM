@@ -142,8 +142,8 @@ Step B **complete** on **818/1429** trades (2025-01 → 2026-05). Re-run after H
 | D1 session OOS | 20260516 | `vem5m_d1_session.set` · `ReportTesterB-23489.xlsx` | **701** | **0.96** | **−13.69** | **15.2** | **beats baseline OOS** |
 | D6 session+BB IS | 20260516 | `vem5m_d6_session_bbwidth.set` · 2024.01–2026.05 | **724** | **1.03** | **+4.98** | **8.0** | **habitat — keep** |
 | D6 session+BB OOS | 20260516 | same · 2025.01–2026.05 | **373** | **0.96** | **−4.58** | **8.4** | **habitat — keep** |
-| D7 +RSI depth IS | pending | `vem5m_d7_session_bb_rsi.set` | — | — | — | — | vs D6 |
-| D7 +RSI depth OOS | pending | same | — | — | — | — | vs D6 |
+| D7 +RSI depth IS | 20260516 | `vem5m_d7_session_bb_rsi.set` · 2024.01–2026.05 | **270** | **0.99** | **−0.38** | **7.8** | **fail vs D6 IS** |
+| D7 +RSI depth OOS | 20260516 | `vem5m_d7_session_bb_rsi.set` · 2025.01–2026.05 | **119** | **1.17** | **+6.00** | **3.2** | conditional keep |
 
 ### D1 vs baseline (IS 2024.01.01 → 2026.05.15)
 
@@ -194,18 +194,28 @@ Baseline confirmed via tester ini `VEM.EURUSD.M5.20250101_20260515.000.ini` (`in
 
 **Habitat profile (2026-05-16):** **`vem5m_d6_session_bbwidth.set`** — session + BB width. IS **+$4.98** / PF **1.03**; OOS **−$4.58** / PF **0.96** ([`step-d6-d0-experiment.md`](step-d6-d0-experiment.md)).
 
-**D7 in progress:** **`vem5m_d7_session_bb_rsi.set`** — adds RSI depth (long RSI ≤ 25, short RSI ≥ 75). See [`step-d7-d0-experiment.md`](step-d7-d0-experiment.md).
+**Habitat profile:** **`vem5m_d7_session_bb_rsi.set`** — long test **+$21.71** / PF **1.11** / 725 tr (2020–2026, $500); OOS slice **+$6** / PF **1.17** (119 tr). D7 **IS** 2024–2026 weaker than D6 (+$4.98 → −$0.38). See [`step-d7-d0-experiment.md`](step-d7-d0-experiment.md).
 
-### Extended stability run (D6 habitat, 2020.12.31 → 2026.05.15)
+### Long test — full habitat (authoritative stability run)
+
+**Settings** (from `VEM.EURUSD.M5.20200101_20260515.000.ini`): **`vem5m_d7_session_bb_rsi.set`** (session + BB width + RSI depth) · **2020.01.01 → 2026.05.15** · **$500** deposit · 0.01 lots.
 
 | Metric | Value |
 |--------|-------|
-| Trades | **1,620** |
-| Net profit | **+$43.07** |
-| Profit factor | **1.10** |
-| Win rate | **65.9%** |
-| Max equity DD | **9.55%** |
-| Sharpe | **2.81** |
-| Avg win / loss | $0.43 / −$0.76 |
+| Trades | **725** |
+| Net profit | **+$21.71** |
+| Profit factor | **1.11** |
+| Win rate | **65.4%** |
+| Max equity DD | **3.0%** |
+| Sharpe | **3.01** |
+| Avg win / loss | $0.46 / −$0.78 |
 
-Confirms **stable positive expectancy** over ~5.4 years with current filters (not a substitute for strict OOS slice, but supports adding **filter #3 one at a time** vs `vem5m_d6` control).
+~**113 trades/year** over 6+ years — low frequency but **stable** PF and drawdown.
+
+**Note:** An earlier screenshot (**1,620** trades, **+$43**, $200 deposit, 2020.12.31 start) used **`vem5m_d6_session_bbwidth.set` only** (no RSI depth). Do not mix the two runs.
+
+| Run label | Set | Period | Deposit | Trades | Net $ | PF |
+|-----------|-----|--------|---------|--------|-------|-----|
+| Long test (this) | **D7** all filters | 2020.01–2026.05 | **$500** | **725** | **+21.71** | **1.11** |
+| Extended D6 only | D6 | 2020.12–2026.05 | $200 | 1,620 | +43.07 | 1.10 |
+| Edge-discovery IS | D6 | 2024.01–2026.05 | $200 | 724 | +4.98 | 1.03 |

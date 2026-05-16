@@ -148,7 +148,7 @@ inline bool VEM_Risk_CheckRSIDepth(const ENUM_ORDER_TYPE otype, const VEMIndicat
       return false;
      }
 
-   if(otype == ORDER_TYPE_BUY)
+   if(otype == ORDER_TYPE_BUY && inp_rsi_depth_long_enable)
      {
       if(s.rsi > inp_rsi_long_max_depth)
         {
@@ -156,7 +156,7 @@ inline bool VEM_Risk_CheckRSIDepth(const ENUM_ORDER_TYPE otype, const VEMIndicat
          return false;
         }
      }
-   else if(otype == ORDER_TYPE_SELL)
+   else if(otype == ORDER_TYPE_SELL && inp_rsi_depth_short_enable)
      {
       if(s.rsi < inp_rsi_short_min_depth)
         {

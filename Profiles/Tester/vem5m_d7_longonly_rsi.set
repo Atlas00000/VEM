@@ -1,5 +1,5 @@
-; VEM Step D7 — session + BB width + RSI depth (stack on D6)
-; Control: vem5m_d6_session_bbwidth.set
+; VEM D7 long-only — session + BB width + long RSI depth (<=25); shorts unchanged vs D6
+; Control: vem5m_d6_session_bbwidth.set · compare: vem5m_d7_session_bb_rsi.set
 ; Charter: Experts/VEM/step-d7-d0-experiment.md
 ;
 ; saved on 2026.05.16
@@ -35,10 +35,10 @@ inp_block_hour_end=15||15||1||150||N
 ; BB width filter (D6)
 inp_bb_width_filter_enable=true||false||0||true||N
 inp_bb_max_width_ratio=0.00165||0.00165||0.000165||0.016500||N
-; RSI depth filter (D7 full)
+; RSI depth — long only (block shallow 25-30 longs)
 inp_rsi_depth_filter_enable=true||false||0||true||N
 inp_rsi_depth_long_enable=true||false||0||true||N
-inp_rsi_depth_short_enable=true||false||0||true||N
+inp_rsi_depth_short_enable=false||false||0||true||N
 inp_rsi_long_max_depth=25.0||25.0||2.500000||250.000000||N
 inp_rsi_short_min_depth=75.0||75.0||7.500000||750.000000||N
 ; Position sizing
