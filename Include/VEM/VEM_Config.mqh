@@ -80,6 +80,15 @@ input group "BB width filter"
 input bool             inp_bb_width_filter_enable = false;
 input double           inp_bb_max_width_ratio     = 0.00165; // block if ratio > this; 0 with filter off
 
+//=== RSI depth filter (Step D7 — habitat) =========================
+// Hypothesis: shallow band touches fail — need deeper OS (long) / OB (short) at signal bar.
+// B5: longs 25-30 and shorts 70-75/75-80 worst; deep_<20 and >=75-80 better.
+// Default OFF; stack on D6 via vem5m_d7_session_bb_rsi.set.
+input group "RSI depth filter"
+input bool             inp_rsi_depth_filter_enable = false;
+input double           inp_rsi_long_max_depth      = 25.0;   // long: signal RSI must be <= this
+input double           inp_rsi_short_min_depth     = 75.0;   // short: signal RSI must be >= this
+
 input group "Position sizing"
 input double           inp_fixed_lots            = 0.01;
 input double           inp_risk_pct             = 0.0;     // 0 = use fixed lots

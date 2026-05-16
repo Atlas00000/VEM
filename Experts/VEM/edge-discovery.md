@@ -423,7 +423,11 @@ Set file: `MQL5/Profiles/Tester/vem5m.set` · Log: `Tester/.../logs/20260516.log
 - [x] D6 IS 2024.01–2026.05 — 724 tr, **+$4.98**, PF **1.03**, DD 8.0%
 - [x] Comparison table OOS row in `baseline-eurusd-m5-20260516.md`
 - [x] **D6 D5 OOS** — **keep** BB width filter (IS backtest pending)
-- [ ] **Defer:** RSI depth (B5), BB walk (B9/B10)
+- [x] **D7 D0 — RSI depth** → [`step-d7-d0-experiment.md`](step-d7-d0-experiment.md)
+- [x] **D7 code** — `inp_rsi_depth_filter_enable`, long max 25 / short min 75
+- [x] **`vem5m_d7_session_bb_rsi.set`**
+- [ ] **You:** F7 → D7 IS/OOS vs `vem5m_d6_session_bbwidth.set`
+- [ ] **Defer:** BB walk (B9/B10)
 
 **Exit criteria for Step D (filter #1):** Session filter validated IS + OOS vs baseline on same window — **done 2026-05-16**.
 
@@ -480,6 +484,7 @@ When PF and drawdown are acceptable in **habitat** on OOS data, consider Phase 3
 - `step-d-d0-experiment.md` — Step D0 locked experiment (filter #1 session)
 - `step-e-results.md` · `step-e-d0-experiment.md` — Step E MAE/MFE + E6 defer
 - `step-d6-d0-experiment.md` — Step D6 filter #2 (BB width)
+- `step-d7-d0-experiment.md` — Step D7 filter #3 (RSI depth)
 - `edgeopt.md` — full isolation philosophy and examples
 - `concept.md` — v1 signal definition and optimization groups (safe vs structural inputs)
 - `roadmap.md` — Phase 1 scope; session/filters explicitly deferred until engine is stable

@@ -133,6 +133,42 @@ inline bool VEM_Risk_CheckBBWidth(const VEMIndicatorSnap &s, string &reason)
    return true;
   }
 
+// Require deeper RSI extreme on signal bar (Step B5 / D7).
+inline bool VEM_Risk_CheckRSIDepth(const ENUM_ORDER_TYPE otype, const VEMIndicatorSnap &s,
+                                   string &reason)
+  {
+   if(!inp_rsi_depth_filter_enable)
+     {
+      reason = "";
+      return true;
+     }
+   if(!s.valid)
+     {
+      reason = "rsi depth filter: invalid indicator snap";
+      return false;
+     }
+
+   if(otype == ORDER_TYPE_BUY)
+     {
+      if(s.rsi > inp_rsi_long_max_depth)
+        {
+         reason = StringFormat("long RSI %.2f > max depth %.2f", s.rsi, inp_rsi_long_max_depth);
+         return false;
+        }
+     }
+   else if(otype == ORDER_TYPE_SELL)
+     {
+      if(s.rsi < inp_rsi_short_min_depth)
+        {
+         reason = StringFormat("short RSI %.2f < min depth %.2f", s.rsi, inp_rsi_short_min_depth);
+         return false;
+        }
+     }
+
+   reason = "";
+   return true;
+  }
+
 inline bool VEM_Risk_AllowNewTrade(const string sym, const ENUM_TIMEFRAMES tf,
                                    const ENUM_ORDER_TYPE otype, const int signal_shift,
                                    const VEMIndicatorSnap &s, string &reason)
@@ -148,6 +184,8 @@ inline bool VEM_Risk_AllowNewTrade(const string sym, const ENUM_TIMEFRAMES tf,
    if(!VEM_Risk_CheckSession(s.bar_time, reason))
       return false;
    if(!VEM_Risk_CheckBBWidth(s, reason))
+      return false;
+   if(!VEM_Risk_CheckRSIDepth(otype, s, reason))
       return false;
    if(!VEM_State_CooldownOk(sym, tf, signal_shift, inp_cooldown_bars))
      {

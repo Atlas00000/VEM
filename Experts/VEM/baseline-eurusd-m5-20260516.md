@@ -142,6 +142,8 @@ Step B **complete** on **818/1429** trades (2025-01 → 2026-05). Re-run after H
 | D1 session OOS | 20260516 | `vem5m_d1_session.set` · `ReportTesterB-23489.xlsx` | **701** | **0.96** | **−13.69** | **15.2** | **beats baseline OOS** |
 | D6 session+BB IS | 20260516 | `vem5m_d6_session_bbwidth.set` · 2024.01–2026.05 | **724** | **1.03** | **+4.98** | **8.0** | **habitat — keep** |
 | D6 session+BB OOS | 20260516 | same · 2025.01–2026.05 | **373** | **0.96** | **−4.58** | **8.4** | **habitat — keep** |
+| D7 +RSI depth IS | pending | `vem5m_d7_session_bb_rsi.set` | — | — | — | — | vs D6 |
+| D7 +RSI depth OOS | pending | same | — | — | — | — | vs D6 |
 
 ### D1 vs baseline (IS 2024.01.01 → 2026.05.15)
 
@@ -191,6 +193,8 @@ Baseline confirmed via tester ini `VEM.EURUSD.M5.20250101_20260515.000.ini` (`in
 **Step E (2026-05-16):** E1–E5 done · E6 **deferred** (low loser MFE — exit tweak not primary). See [`step-e-results.md`](step-e-results.md) · [`step-e-d0-experiment.md`](step-e-d0-experiment.md).
 
 **Habitat profile (2026-05-16):** **`vem5m_d6_session_bbwidth.set`** — session + BB width. IS **+$4.98** / PF **1.03**; OOS **−$4.58** / PF **0.96** ([`step-d6-d0-experiment.md`](step-d6-d0-experiment.md)).
+
+**D7 in progress:** **`vem5m_d7_session_bb_rsi.set`** — adds RSI depth (long RSI ≤ 25, short RSI ≥ 75). See [`step-d7-d0-experiment.md`](step-d7-d0-experiment.md).
 
 ### Extended stability run (D6 habitat, 2020.12.31 → 2026.05.15)
 
